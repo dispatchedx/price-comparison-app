@@ -20,8 +20,6 @@ Welcome to the showcase repository for Prosfores, a full-stack application desig
 
 ## 🖼️ Application Showcase
 
-_(TODO add screenshots or short GIFs of application)_
-
 |                   Search & Filtering                    |                Watchlist Management                |
 | :-----------------------------------------------------: | :------------------------------------------------: |
 |       ![Search Demo](assets/prosfores_search.gif)       | ![Watchlist Demo](assets/prosfores_watchlists.gif) |
