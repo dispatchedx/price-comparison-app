@@ -43,7 +43,7 @@ Welcome to the showcase repository for Prosfores, a full-stack application desig
 
 Prosfores is built on a robust, multi-component architecture designed for scalability, efficiency, and accuracy.
 
-\*\*
+
 
 ### 1. Backend API
 
@@ -73,7 +73,7 @@ This is the most complex and innovative part of the system. To compare "apples t
 3.  **Constraint-Based Pre-Grouping:** Products are first grouped by their hard constraints (Brand + Size + Package Type). This dramatically reduces the search space for the next step.
 4.  **Semantic Clustering:** Within each constraint group, product embeddings are generated using the `paraphrase-multilingual-MiniLM-L12-v2` model from `sentence-transformers`. **HDBSCAN** is then used to cluster products based on the semantic similarity of their names, effectively grouping "Kellogg's Krave Choco Nut 410gr" with "KELLOGGS Δημητριακά Krave Πραλίνα Φουντουκιού 410g".
 
-\*\*
+
 
 ### 4. Frontend Application
 
