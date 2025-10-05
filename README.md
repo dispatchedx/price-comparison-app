@@ -8,36 +8,36 @@ Welcome to the showcase repository for Prosfores, a full-stack application desig
 
 ## 🚀 Key Features
 
-* **Multi-Supermarket Scraping:** Automatically scrapes product data from 8 major Greek supermarkets (AB, Sklavenitis, MyMarket, Masoutis, etc.).
-* **Intelligent Product Search:** A powerful search engine that allows users to find products across all available stores, with filters for specific supermarkets.
-* **Advanced Product Unification:** A custom Natural Language Processing (NLP) pipeline that intelligently identifies and groups the same product sold across different stores, even with variations in naming.
-* **Personalized Watchlists:** Registered users can create multiple watchlists to track prices of their favorite items over time.
-* **Price History:** Users can view the price history of a specific product to make informed purchasing decisions.
-* **User Authentication:** Secure user registration and login system.
-* **Responsive Frontend:** A mobile-first application built with React Native and Expo, ensuring a seamless experience on both web and mobile devices.
+- **Multi-Supermarket Scraping:** Automatically scrapes product data from 8 major Greek supermarkets (AB, Sklavenitis, MyMarket, Masoutis, etc.).
+- **Intelligent Product Search:** A powerful search engine that allows users to find products across all available stores, with filters for specific supermarkets.
+- **Advanced Product Unification:** A custom Natural Language Processing (NLP) pipeline that intelligently identifies and groups the same product sold across different stores, even with variations in naming.
+- **Personalized Watchlists:** Registered users can create multiple watchlists to track prices of their favorite items over time.
+- **Price History:** Users can view the price history of a specific product to make informed purchasing decisions.
+- **User Authentication:** Secure user registration and login system.
+- **Responsive Frontend:** A mobile-first application built with React Native and Expo, ensuring a seamless experience on both web and mobile devices.
 
 ---
 
 ## 🖼️ Application Showcase
 
-*(TODO add screenshots or short GIFs of application)*
+_(TODO add screenshots or short GIFs of application)_
 
-| Search & Filtering | Watchlist Management |
-| :---: | :---: |
-| *[Image/GIF of the main search page with results]* | *[Image/GIF of a user's watchlist page]* |
-| A clean interface for searching and filtering products. | Users can create and manage multiple lists. |
+|                   Search & Filtering                    |                Watchlist Management                |
+| :-----------------------------------------------------: | :------------------------------------------------: |
+|       ![Search Demo](assets/prosfores_search.gif)       | ![Watchlist Demo](assets/prosfores_watchlists.gif) |
+| A clean interface for searching and filtering products. |    Users can create and manage multiple lists.     |
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Area | Technologies |
-| :--- | :--- |
-| **Frontend** | React Native, Expo, TypeScript, Axios, Formik, Yup |
-| **Backend** | Python, FastAPI, SQLAlchemy, Pydantic, PostgreSQL |
-| **Web Scraping**| Python, Playwright, BeautifulSoup, Requests, Concurrent Futures |
-| **Product Matching**| Python, Sentence-Transformers, HDBSCAN, Aho-Corasick |
-| **Deployment** | Render (for backend) |
+| Area                 | Technologies                                                    |
+| :------------------- | :-------------------------------------------------------------- |
+| **Frontend**         | React Native, Expo, TypeScript, Axios, Formik, Yup              |
+| **Backend**          | Python, FastAPI, SQLAlchemy, Pydantic, PostgreSQL               |
+| **Web Scraping**     | Python, Playwright, BeautifulSoup, Requests, Concurrent Futures |
+| **Product Matching** | Python, Sentence-Transformers, HDBSCAN, Aho-Corasick            |
+| **Deployment**       | Render (for backend)                                            |
 
 ---
 
@@ -45,26 +45,26 @@ Welcome to the showcase repository for Prosfores, a full-stack application desig
 
 Prosfores is built on a robust, multi-component architecture designed for scalability, efficiency, and accuracy.
 
-**
+\*\*
 
 ### 1. Backend API
 
 The core of the application is a RESTful API built with **FastAPI**. It handles user authentication, product searches, and watchlist management.
 
-* **Performance-Optimized Queries:** The API uses `SQLAlchemy` Core to execute highly optimized raw SQL queries. A key example is the use of `LATERAL JOIN` to efficiently fetch the *latest* price for each product without the performance overhead of traditional joins or subqueries on large tables.
-* **Data Validation:** `Pydantic` models are used for robust request and response validation, ensuring data integrity.
-* **Asynchronous by Nature:** Leverages FastAPI's async capabilities to handle concurrent requests efficiently.
+- **Performance-Optimized Queries:** The API uses `SQLAlchemy` Core to execute highly optimized raw SQL queries. A key example is the use of `LATERAL JOIN` to efficiently fetch the _latest_ price for each product without the performance overhead of traditional joins or subqueries on large tables.
+- **Data Validation:** `Pydantic` models are used for robust request and response validation, ensuring data integrity.
+- **Asynchronous by Nature:** Leverages FastAPI's async capabilities to handle concurrent requests efficiently.
 
 ### 2. Web Scraping System
 
 A sophisticated, independent Python system is responsible for populating the database.
 
-* **Concurrent Scraping:** The system uses `concurrent.futures.ThreadPoolExecutor` to run scrapers for multiple supermarkets simultaneously, significantly reducing the total time required to update the data.
-* **Resilient & Robust:** Each scraper is wrapped in error handling and uses a custom `fetch_with_retry` helper with exponential backoff to handle network failures. A scraper is considered "failed" if it returns an insufficient number of products, preventing partial data from corrupting the database.
-* **Hybrid Scraping Techniques:**
-    * **API-based:** For modern sites like AB Vasilopoulos and Galaxias, the scraper reverse-engineers their GraphQL/REST APIs. It even includes a `Playwright`-based mechanism to automatically extract fresh API hash keys when they expire.
-    * **HTML Parsing:** For traditional websites, `BeautifulSoup` and `requests` are used to parse HTML content.
-* **Production-Ready Logging:** A centralized logging configuration creates rotating log files for each scraper, making it easy to debug failures and monitor activity.
+- **Concurrent Scraping:** The system uses `concurrent.futures.ThreadPoolExecutor` to run scrapers for multiple supermarkets simultaneously, significantly reducing the total time required to update the data.
+- **Resilient & Robust:** Each scraper is wrapped in error handling and uses a custom `fetch_with_retry` helper with exponential backoff to handle network failures. A scraper is considered "failed" if it returns an insufficient number of products, preventing partial data from corrupting the database.
+- **Hybrid Scraping Techniques:**
+  - **API-based:** For modern sites like AB Vasilopoulos and Galaxias, the scraper reverse-engineers their GraphQL/REST APIs. It even includes a `Playwright`-based mechanism to automatically extract fresh API hash keys when they expire.
+  - **HTML Parsing:** For traditional websites, `BeautifulSoup` and `requests` are used to parse HTML content.
+- **Production-Ready Logging:** A centralized logging configuration creates rotating log files for each scraper, making it easy to debug failures and monitor activity.
 
 ### 3. Product Unification (NLP & Clustering)
 
@@ -75,16 +75,16 @@ This is the most complex and innovative part of the system. To compare "apples t
 3.  **Constraint-Based Pre-Grouping:** Products are first grouped by their hard constraints (Brand + Size + Package Type). This dramatically reduces the search space for the next step.
 4.  **Semantic Clustering:** Within each constraint group, product embeddings are generated using the `paraphrase-multilingual-MiniLM-L12-v2` model from `sentence-transformers`. **HDBSCAN** is then used to cluster products based on the semantic similarity of their names, effectively grouping "Kellogg's Krave Choco Nut 410gr" with "KELLOGGS Δημητριακά Krave Πραλίνα Φουντουκιού 410g".
 
-**
+\*\*
 
 ### 4. Frontend Application
 
 The user-facing application is built with **React Native & Expo**, allowing it to be deployed on the web, iOS, and Android from a single codebase.
 
-* **Modern React Practices:** The app is built with functional components and extensively uses custom hooks for state management (`useSearchState`, `useShopSelection`, `useWatchlistData`) to create clean, decoupled, and reusable logic.
-* **Optimized Performance:** Techniques like `React.memo`, `useCallback`, `useMemo`, and debouncing with `lodash` are used throughout the application to prevent unnecessary re-renders and API calls, ensuring a smooth user experience.
-* **State Management:** A combination of `React Context` for global state (like authentication) and component-level state (`useState`) is used for a predictable and manageable state flow.
-* **Responsive & Adaptive UI:** The UI is designed to adapt to different screen sizes, with responsive grid layouts and platform-aware components.
+- **Modern React Practices:** The app is built with functional components and extensively uses custom hooks for state management (`useSearchState`, `useShopSelection`, `useWatchlistData`) to create clean, decoupled, and reusable logic.
+- **Optimized Performance:** Techniques like `React.memo`, `useCallback`, `useMemo`, and debouncing with `lodash` are used throughout the application to prevent unnecessary re-renders and API calls, ensuring a smooth user experience.
+- **State Management:** A combination of `React Context` for global state (like authentication) and component-level state (`useState`) is used for a predictable and manageable state flow.
+- **Responsive & Adaptive UI:** The UI is designed to adapt to different screen sizes, with responsive grid layouts and platform-aware components.
 
 ---
 
@@ -138,23 +138,27 @@ This custom hook encapsulates all logic for handling product searches, including
 ```typescript
 export const useSearchAPI = (
   selectedShopIds: number[],
-  setSuggestions: (suggestions: Product[]) => void,
+  setSuggestions: (suggestions: Product[]) => void
   // ... other setters
 ) => {
   const debouncedFetchSuggestions = useMemo(
-    () => debounce((user_input: string) => {
-      // ... API call logic for suggestions
-    }, 300),
+    () =>
+      debounce((user_input: string) => {
+        // ... API call logic for suggestions
+      }, 300),
     [selectedShopIds, setSuggestions]
   );
 
   const fetchResults = useCallback(
     async (search: string, reset = false, currentOffset = 0) => {
-      if (!search || search.length < MIN_CHAR || selectedShopIds.length === 0) return;
+      if (!search || search.length < MIN_CHAR || selectedShopIds.length === 0)
+        return;
 
       setLoadingMore(true);
       try {
-        const res = await api.get("/products/search", { /* params */ });
+        const res = await api.get("/products/search", {
+          /* params */
+        });
         const fetched = res.data.products || [];
 
         if (reset) {
@@ -171,7 +175,7 @@ export const useSearchAPI = (
         setLoadingMore(false);
       }
     },
-    [selectedShopIds, /* ... other dependencies */]
+    [selectedShopIds /* ... other dependencies */]
   );
 
   return { debouncedFetchSuggestions, fetchResults };
@@ -218,4 +222,3 @@ def cluster_by_constraints(
 ---
 
 Thank you for viewing my project!
-    
